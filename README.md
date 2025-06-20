@@ -89,5 +89,18 @@ bash rm_small_tiles.sh
 
 During the evaluation we use different number of image tiles. To do so, we need to update the 'metric_main.py' in the original MAT repo. You can use the 'metric_main.py' shared in this repos directly, or you can add custom metric functions inside this file.
 
-### 4. Run training code on pre-trained MAT model
+## Run the training code on pre-trained MAT model
 
+Use the following code to fine-tune the MAT model pre-trained on Places dataset (change the number of GPUs and GPU IDs accordingly) : 
+
+```bash
+CUDA_VISIBLE_DEVICES=1,2 python3 train.py --outdir=/models --gpus=2 --data=/path_to_training_set --data_val=/path_to_validation_set --batch=8 --lr=0.001 --resume=/models/Places_512_FullData.pkl --metrics=fid_custom_5k --augpipe bgcfn --kimg=120
+```
+
+## Run the test code on fine-tuned model
+
+Use the following code to generate images using the fine-tuned model : 
+
+```bash
+python3 generate_image.py --network /path_to_model_pkl_file --dpath /path_to_test_set --mpath /path_to_test_masks --outdir /path_to_output
+```
