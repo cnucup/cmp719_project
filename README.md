@@ -34,13 +34,13 @@ Copy or move the `Dockerfile_mat` from this repo into the `MAT` directory, then 
 
 ```bash
 # Inside the MAT directory
-cp /path/to/this-repo/Dockerfile .
+cp /path/to/this-repo/Dockerfile_mat .
 
 # Build the Docker image
-docker build -t mat-inpainting .
+docker build -f Dockerfile_mat -t mat_project .
 
 # Run the container
-docker run -it --gpus all -v $(pwd):/workspace mat-inpainting /bin/bash
+docker run --ipc=host --runtime=nvidia --privileged --gpus all -d -v /path_to_mat_folder:/workspace -v /path_to_datasets:/dataset -v /path_to_models:/models --name mat_project **container_id**
 ```
 
 > ⚠️ Make sure you have Docker and NVIDIA Container Toolkit installed for GPU support.
@@ -50,7 +50,7 @@ docker run -it --gpus all -v $(pwd):/workspace mat-inpainting /bin/bash
 Prepare the datasets required for fine-tuning:
 
 - **xView Dataset**  
-  Download from the official [xView website](https://challenge.xviewdataset.org/) (registration required).
+  Download from the official [xView website](https://xviewdataset.org) (registration required).
 
 - **INRIA Aerial Image Dataset**  
   Download from [INRIA’s official site](https://project.inria.fr/aerialimagelabeling/).
