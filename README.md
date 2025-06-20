@@ -5,6 +5,8 @@ This project explores the applicability of Generative Adversarial Networks (GANs
 
 In this work, the pre-trained MAT model is fine-tuned using two satellite image datasets: xView and INRIA Aerial Image Labeling. The goal is to evaluate the performance of GAN-based inpainting models on high-resolution remote sensing imagery, where challenges such as large occlusions, diverse land cover, and sharp structural patterns are prominent.
 
+![results for inria dataset](/test_sets/visual_results_inria_last.png)
+
 ## Key Features
 - Fine-tuning of the MAT model on satellite datasets (xView and INRIA).
 
@@ -105,3 +107,5 @@ Use the following code to generate images using the fine-tuned model :
 python3 generate_image.py --network /path_to_model_pkl_file --dpath /path_to_test_set --mpath /path_to_test_masks --outdir /path_to_output
 ```
 You can use the test images and masks given [here](https://github.com/cnucup/cmp719_project/tree/main/test_sets).
+
+Detailed results are given [here](/results).
