@@ -104,3 +104,4 @@ Use the following code to generate images using the fine-tuned model :
 ```bash
 python3 generate_image.py --network /path_to_model_pkl_file --dpath /path_to_test_set --mpath /path_to_test_masks --outdir /path_to_output
 ```
+You can use the test images and masks given [here](https://github.com/cnucup/cmp719_project/tree/main/test_sets).
