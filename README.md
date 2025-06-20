@@ -65,3 +65,29 @@ datasets/
 ├── inria/
 │   ├── images/
 │   └── masks/
+```
+
+### 4. Prepare the Datasets
+
+Since the original datasets contain TIF files and high resolution images, in order to make them compatible with MAT architecture we need to convert them to PNG and divide them into patches.
+
+Use mogrify to convert TIF files into PNGs.
+
+```bash
+mogrify -path /destination_path_for_png_images -format png *.tif
+```
+```bash
+for f in *.png; do convert "${f}" +repage -crop 512x512 /path_to_png_tiles/${f%.*}_%04d.png; done;
+```
+
+Not all final tiles will have a size of 512*512. To remove small tiles copy or move the `rm_small_tiles.sh` from this repo into the `MAT` directory and use:
+```bash
+bash rm_small_tiles.sh
+```
+
+### 5. Change the metrics accordingly
+
+During the evaluation we use different number of image tiles. To do so, we need to update the 'metric_main.py' in the original MAT repo. You can use the 'metric_main.py' shared in this repos directly, or you can add custom metric functions inside this file.
+
+### 4. Run training code on pre-trained MAT model
+
