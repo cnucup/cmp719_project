@@ -30,7 +30,7 @@ cd MAT
 
 ### 2. Dockerize the Environment
 
-This project uses a custom `Dockerfile` to ensure compatibility and reproducibility. The `Dockerfile` is included in **this repository**.
+This project uses a custom `Dockerfile` to ensure compatibility and reproducibility.
 
 Copy or move the `Dockerfile_mat` from this repo into the `MAT` directory, then build and run the Docker container:
 
@@ -78,6 +78,8 @@ Use mogrify to convert TIF files into PNGs.
 ```bash
 mogrify -path /destination_path_for_png_images -format png *.tif
 ```
+Divide images into patches :
+
 ```bash
 for f in *.png; do convert "${f}" +repage -crop 512x512 /path_to_png_tiles/${f%.*}_%04d.png; done;
 ```
@@ -89,7 +91,7 @@ bash rm_small_tiles.sh
 
 ### 5. Change the metrics accordingly
 
-During the evaluation we use different number of image tiles. To do so, we need to update the `metric_main.py` in the original MAT repo. You can use the `metric_main.py` shared in this repos directly, or you can add custom metric functions inside this file.
+During the evaluation we use different number of image tiles. To do so, we need to update the `metric_main.py` in the original MAT repo. You can use the `metric_main.py` shared in this repo directly, or you can add custom metric functions inside this file.
 
 ## Run the training code on pre-trained MAT model
 
